@@ -1,0 +1,2 @@
+# Copies
+Copies in C++. 
