@@ -4,7 +4,7 @@ struct vector3d
 {
     double x,y,z;
 
-    /* default constructo */
+    /* default constructor */
     vector3d()
         : x(0.0), y(0.0), z(0.0)
     {
@@ -32,7 +32,7 @@ struct vector3d
     {
         return double(x*other.x + y*other.y + z*other.z); 
     }
-    /* overload operator+ */
+    /* overload operator* */
     double operator*(const vector3d& other)
     {
         return dot(other);
