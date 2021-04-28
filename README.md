@@ -4,6 +4,7 @@ This repo contains some of my advanced learning concepts in c++. You can find ea
 # Topic list
 * Templates
 * Copies
+* Overloading operators
 
 # Build a test
 Go to the example folder and do the following
