@@ -5,6 +5,7 @@ This repo contains some of my advanced learning concepts in c++. You can find ea
 * Templates
 * Copies
 * Overloading operators
+* Timing
 
 # Build a test
 Go to the example folder and do the following
