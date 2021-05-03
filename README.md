@@ -7,6 +7,7 @@ This repo contains some of my advanced learning concepts in c++. You can find ea
 * Overloading operators
 * Timing
 * std::async *C++17*
+* Memory allocation
 
 ## Build a test
 Go to the example folder and do the following
