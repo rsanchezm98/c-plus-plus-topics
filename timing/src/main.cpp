@@ -1,49 +1,51 @@
 #include <iostream>
-#include <chrono>
 #include <thread>
-#include <string>
+#include "timer_utils.hpp"
 
-/* the timer_ measures the life of the scope inside it is called */
-struct timer_
-{
-    std::chrono::_V2::system_clock::time_point init;
-    std::chrono::_V2::system_clock::time_point end;
-    std::chrono::duration<double> latency;
-    std::string name;
+#define PROFILING 1
+#if PROFILING
+    #define PROFILE_SCOPE(name) timer::InstrumentationTimer timer##__LINE__(name)
+    #define PROFILE_FUNCTION() PROFILE_SCOPE(__PRETTY_FUNCTION__)
+#else
+    #define PROFILE_SCOPE(name)
+#endif
 
-    /* with explicit we make the struct only callable with this constructor */
-    explicit timer_(const std::string& function_name)
-        : name(function_name)
+namespace test{
+    void testFunction1()
     {
-        init = std::chrono::high_resolution_clock::now();
+        PROFILE_FUNCTION();
+        using namespace std::chrono_literals;
+        std::this_thread::sleep_for(0.5s);
     }
 
-    /* when the destructor is called the latency is computed */
-    ~timer_()
+    void testFunction2()
     {
-        end = std::chrono::high_resolution_clock::now();
-        latency = end - init;
-        std::cout << "[" << name << "]: Duration of " << latency.count()*1000.0 << " ms" << std::endl;
+        PROFILE_FUNCTION();
+        using namespace std::chrono_literals;
+        std::this_thread::sleep_for(1s);
     }
-};
 
-void testFunction(const std::string& name_of_func)
-{
-    timer_ time(name_of_func);
-    using namespace std::chrono_literals;
-    std::this_thread::sleep_for(1s);
+    void RunFunctions()
+    {
+        PROFILE_FUNCTION();
+
+        std::cout << "Running functions\n";
+        std::thread first(testFunction1);
+        std::thread second(testFunction2);
+
+        first.join();
+        second.join();
+    }
 }
 
 int main()
-{
+{   
     /* create the main latency timer */
-    timer_ mainTimer("main_function");
+    timer::Timer mainTimer(__PRETTY_FUNCTION__);
 
-    /* we can not do this as the struct is explicitly created *
-    *  timer_ mainTimer;
-    */
+    timer::Instrumentor::Get()->BeginSession("Profile", "results.json");
+    test::RunFunctions();
+    timer::Instrumentor::Get()->EndSession();
 
-    /* call a function that has its own timer inside*/
-    testFunction("test_function");
     return 0;
 }
