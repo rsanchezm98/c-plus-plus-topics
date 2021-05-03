@@ -18,5 +18,5 @@ make
 ./<name_of_the_program>
 ```
 ## Debug or Release
-If want to compile in debugging mode use  *cmake -DCMAKE_BUILD_TYPE=Debug ..* instead of only *cmake ..*
-If want to compile in release mode use  *cmake -DCMAKE_BUILD_TYPE=Release ..* instead of only *cmake ..*
+* If want to compile in debugging mode use  *cmake -DCMAKE_BUILD_TYPE=Debug ..* instead of only *cmake ..*
+* If want to compile in release mode use  *cmake -DCMAKE_BUILD_TYPE=Release ..* instead of only *cmake ..*
