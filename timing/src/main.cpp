@@ -47,5 +47,10 @@ int main()
     test::RunFunctions();
     timer::Instrumentor::Get()->EndSession();
 
+    /* there is only one creation of the Instrumentor, here no creation happened */
+    timer::Instrumentor::Get()->BeginSession("Profile2", "results2.json");
+    test::RunFunctions();
+    timer::Instrumentor::Get()->EndSession();
+
     return 0;
 }

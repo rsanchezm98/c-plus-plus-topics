@@ -34,6 +34,7 @@ namespace timer {
 
     void Instrumentor::BeginSession(const char* name, const char* filepath)
     {
+        std::cout << "New session created: " << name << "\n";
         m_OutputStream.open(filepath);
         WriteHeader();
         m_CurrentSession = std::make_unique<InstrumentationSession>();
@@ -83,6 +84,8 @@ namespace timer {
         m_OutputStream.flush();
     }
 
+
+    /* this is a singleton, we instantiate only one time */
     std::shared_ptr<Instrumentor> Instrumentor::Get()
     {
         static std::shared_ptr<Instrumentor> instance = std::make_shared<Instrumentor>();
