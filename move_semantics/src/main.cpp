@@ -33,6 +33,23 @@ class String
             other.m_Data = nullptr;
         }
 
+        /*overload the = operator so as to allow to be assigned an rvalue without copying */
+        String& operator=(String&& other)
+        {
+            std::cout << "Assigned string without copying!\n";
+
+            if(this != &other)
+            {
+                delete[] m_Data;
+                m_Size = other.m_Size;
+                m_Data = other.m_Data;
+                other.m_Size = 0;
+                other.m_Data = nullptr;
+            }
+
+            return *this;
+        }
+
         void Print()
         {
             for(int i = 0; i < m_Size; i++)
@@ -120,6 +137,19 @@ int main()
     }
 
     /* We avoid one heap allocation which is done each time we copy a string */
+
+
+    /* here we overload the assing operator so as to allow to reassign rvalues [from an lvalue] to an lvalue
+    * the expected behaviour is that with std::move no copy takes place [any allocations are done]*/
+    std::cout << "********** Reassigning a temporary string to an lvalue **********\n";
+    {
+        String name("Rodrigo");
+        String surname("Sanchez");
+        name.Print();
+        /* with std::move we get an rvalue of an lvalue [surname] */
+        name = std::move(surname);
+        name.Print();
+    }
 
     return 0;
 }
