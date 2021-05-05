@@ -9,6 +9,7 @@ This repo contains some of my advanced learning concepts in c++. You can find ea
 * std::async *C++17*
 * Memory allocation
 * Move semantics
+* Data structures
 
 ## Build a test
 Go to the example folder and do the following
