@@ -1,19 +1,26 @@
 #include <iostream>
 #include "data_structures_utils.hpp"
+#include <array>
 
 int main()
 {
-
-    structures::array<int,2> test; 
+    int prevArray[2] = {1,2};
+    structures::array<int,2> test(prevArray); 
 
     test[0] = 1;
     test[1] = 2;
 
-    /* this implyies a copy */
-    structures::array<int,2> newtest(test); 
-
-    /* this implyies a copy */
+    /* this calls the copy constructor */
     structures::array<int,2> test3 = test;
+    test[0] = 999;
+    test3[1] = 999;
+
+    structures::array<std::string,2> test_;
+    test_[0] = "Rodrigo";
+    std::cout << test_[0] << std::endl;
+
+    std::cout << *test_.data() << std::endl;
+
 
     for(size_t i = 0; i < test.size(); i++)
     {
@@ -21,9 +28,5 @@ int main()
     }
 
 
-    /* to do:
-    * rlvalue construction
-    * std::move
-    */
     return 0;
 }

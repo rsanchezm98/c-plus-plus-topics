@@ -10,25 +10,30 @@ class array
     public:
         array() = default;
         
-        array(const T& data)
-            : m_Data(data)
+        array(const T* data)
         {
+            for(size_t i = 0; i < S; i++)
+            {
+                m_Data[i] = data[i];
+            }   
         }
 
         /* copy constructor */
         array(const array& other)
         {
-            std::cout << "Copyied!\n";
+            std::cout << "Copy constructor!\n";
             for(size_t i = 0; i < S; i++)
             {
                 m_Data[i] = other.m_Data[i];
             }
         }
 
+
         constexpr size_t size() const
         {
             return S;
         }
+
 
         /* for non const */
         T& operator[](int index)
@@ -41,7 +46,14 @@ class array
         {
             return m_Data[index];
         }
-
+        
+        array& operator=(array const& other) {
+            if (&other != this) {
+                std::cout << "Copy operator\n";
+                m_Data = other.m_Data;
+            }
+        return *this;
+    }
         T* data()
         {
             return m_Data;
