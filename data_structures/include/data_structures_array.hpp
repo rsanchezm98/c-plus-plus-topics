@@ -1,9 +1,8 @@
-#ifndef DATA_STRUCTURES_UTILS_HPP
-#define DATA_STRUCTURES_UTILS_HPP
+#ifndef DATA_STRUCTURES_ARRAY_HPP
+#define DATA_STRUCTURES_ARRAY_HPP
 
 namespace structures{
 
-/* ARRAY */
 template<typename T, size_t S>
 class array
 {
@@ -71,4 +70,4 @@ class array
 
 } // end of namespace
 
-#endif // DATA_STRUCTURES_UTILS_HPP
+#endif // DATA_STRUCTURES_ARRAY_HPP

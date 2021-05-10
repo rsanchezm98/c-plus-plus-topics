@@ -1,9 +1,11 @@
 #include <iostream>
-#include "data_structures_utils.hpp"
-#include <array>
+#include "data_structures_array.hpp"
+#include "data_structures_vector.hpp"
 
 int main()
 {
+
+    std::cout << "************** ARRAY SECTION **************\n";
     int prevArray[2] = {1,2};
     structures::array<int,2> test(prevArray); 
 
@@ -26,6 +28,8 @@ int main()
     {
         std::cout << "test: " << test[i] << " -- newtest: " << test3[i] << "\n";
     }
+
+    std::cout << "************** VECTOR SECTION **************\n";
 
 
     return 0;
