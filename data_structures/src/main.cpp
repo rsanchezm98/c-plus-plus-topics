@@ -1,6 +1,8 @@
 #include <iostream>
 #include "data_structures_array.hpp"
 #include "data_structures_vector.hpp"
+#include <string>
+
 
 int main()
 {
@@ -30,6 +32,41 @@ int main()
     }
 
     std::cout << "************** VECTOR SECTION **************\n";
+    
+    structures::vector<int> vectorTest;
+    vectorTest.push_back(3);
+    vectorTest.push_back(4);
+    std::cout << "capacity: " << vectorTest.capacity() << " -- size: " << vectorTest.size() << std::endl;
+    vectorTest.push_back(3);
+    std::cout << "capacity: " << vectorTest.capacity() << " -- size: " << vectorTest.size() << std::endl;
+
+    vectorTest.print_vector();
+
+    vectorTest.emplace_back(1);
+    vectorTest.print_vector();
+    vectorTest.clear();
+    std::cout << "capacity: " << vectorTest.capacity() << " -- size: " << vectorTest.size() << std::endl;
+    vectorTest.print_vector();
+    
+
+    structures::vector<std::string> stringVect;
+    stringVect.push_back(std::string("Rodrigo"));
+    stringVect.print_vector();
+    stringVect.push_back("Sanchez");
+    std::cout << "capacity: " << stringVect.capacity() << " -- size: " << stringVect.size() << std::endl;
+    stringVect.push_back("dos");
+    std::cout << "capacity: " << stringVect.capacity() << " -- size: " << stringVect.size() << std::endl;
+
+    stringVect.print_vector();
+    stringVect.clear();
+    stringVect.emplace_back("Hello World");
+    stringVect.print_vector();
+    
+    std::cout << "capacity: " << stringVect.capacity() << " -- size: " << stringVect.size() << std::endl;
+    stringVect.print_vector();
+
+
+
 
 
     return 0;
